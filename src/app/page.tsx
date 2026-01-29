@@ -381,14 +381,43 @@ export default function HomePage() {
 					<p className='text-lg text-primary-100 mb-8 max-w-2xl mx-auto'>
 						Join thousands of Nigerians who buy and sell with confidence
 					</p>
-					<Link href='/create-transaction'>
-						<Button
-							size='lg'
-							className='bg-white text-primary-600 hover:bg-primary-50'
-						>
-							Create Your First Transaction
-						</Button>
+					<Link
+						href='#'
+						className='space-x-4 bg-white text-primary-600 hover:bg-primary-300'
+					>
+						Create Your First Transaction &nbsp;
 					</Link>
+					<br />
+					<Link
+						href='#'
+						className='space-x-4 bg-white text-primary-600 hover:bg-primary-300'
+					>
+						Join Dispatchers Program
+					</Link>
+					<div className='my-8 md:my-12'>
+						<hr className='border-primary-200' />
+					</div>
+					<Link href='#' className='mt-2 text-3xl text-black'>
+						DAIL *565#
+					</Link>
+					<br />{" "}
+					<h4 className='mt-2 text-lg text-white'>
+						To support last-mile delivery and physical goods exchange, PayHold
+						introduces a USSD-based dispatcher activation system.
+					</h4>{" "}
+					<p className='mt-4 text-1xl text-center'>
+						How it works: Dispatch riders (motorcycles) or car dispatchers dial
+						a designated USSD code <span className='text-2xl'>*565#</span> from
+						their registered phone number. Dialing the code activates the
+						dispatcher’s availability status on the PayHold platform. Once
+						activated: The dispatcher is automatically detected by PayHold as
+						“online/available”. Their phone number, dispatcher type (bike or
+						car), and activation timestamp are logged. When a transaction
+						requires delivery: PayHold rotates through available dispatchers,
+						automatically selecting or calling them in sequence. This prevents
+						favoritism, reduces manual coordination, and ensures fair job
+						distribution.
+					</p>
 				</div>
 			</section>
 
@@ -480,7 +509,7 @@ export default function HomePage() {
 					</div>
 
 					<div className='pt-8 border-t border-secondary-800 text-sm text-center'>
-						<p>&copy; 2024 EscrowNG. All rights reserved.</p>
+						<p>&copy; 2026 PayHold. All rights reserved.</p>
 					</div>
 				</div>
 			</footer>
