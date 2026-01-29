@@ -51,7 +51,7 @@ export default function StatusBadge({
 				sizeClasses[size],
 			)}
 		>
-			{showIcon && type === "transaction" && (
+			{showIcon && "icon" in config && config.icon && (
 				<span className='text-base'>{config.icon}</span>
 			)}
 			{config.label}

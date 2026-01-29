@@ -72,7 +72,7 @@ export default function LoginPage() {
 
 				<Card>
 					<CardHeader>
-						<CardTitle className='text-center'> Login</CardTitle>
+						<CardTitle className='text-center'> Register</CardTitle>
 						<p className='text-center text-sm text-secondary-600 mt-2'>
 							Select a role to explore the dashboard
 						</p>
@@ -195,10 +195,10 @@ export default function LoginPage() {
 						<p className='text-center text-sm text-secondary-600 mt-6'>
 							Don't have an account?{" "}
 							<Link
-								href='/register'
+								href='/login'
 								className='text-primary-600 hover:text-primary-700 font-medium'
 							>
-								Sign up
+								Login
 							</Link>
 						</p>
 					</CardContent>

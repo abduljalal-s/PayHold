@@ -2,18 +2,22 @@
 
 import Button from "@/components/ui/Button";
 import Link from "next/link";
+import { useState } from "react";
 
 // ============================================================================
 // LANDING PAGE - Public facing
 // ============================================================================
 
 export default function HomePage() {
+	const [menuOpen, setMenuOpen] = useState(false);
+
 	return (
 		<div className='min-h-screen bg-white'>
 			{/* Navigation */}
 			<nav className='border-b border-secondary-200 bg-white sticky top-0 z-40 shadow-sm'>
 				<div className='container mx-auto px-4 sm:px-6 lg:px-8'>
 					<div className='flex items-center justify-between h-16'>
+						{/* Logo */}
 						<div className='flex items-center gap-2'>
 							<div className='h-10 w-10 bg-primary-600 rounded-lg flex items-center justify-center'>
 								<svg
@@ -35,12 +39,16 @@ export default function HomePage() {
 							</span>
 						</div>
 
+						{/* Desktop Nav */}
 						<div className='hidden md:flex items-center gap-6'>
 							<Link
 								href='/how-it-works'
 								className='text-secondary-700 hover:text-primary-600 transition-colors'
 							>
 								How It Works
+							</Link>
+							<Link href='/create-transaction'>
+								<Button variant='outline'>Create Transaction</Button>
 							</Link>
 							<Link
 								href='/contact'
@@ -53,18 +61,77 @@ export default function HomePage() {
 									Log In
 								</Button>
 							</Link>
-							<Link href='/create-transaction'>
-								<Button size='sm'>Create Transaction</Button>
-							</Link>
 						</div>
 
-						{/* Mobile menu button */}
-						<div className='md:hidden'>
-							<Link href='/create-transaction'>
-								<Button size='sm'>Get Started</Button>
-							</Link>
-						</div>
+						{/* Mobile Hamburger */}
+						<button
+							onClick={() => setMenuOpen(true)}
+							className='md:hidden p-2 border border-secondary-200 rounded-lg'
+							aria-label='Open menu'
+						>
+							<svg
+								className='w-6 h-6'
+								fill='none'
+								stroke='currentColor'
+								viewBox='0 0 24 24'
+							>
+								<path
+									strokeLinecap='round'
+									strokeLinejoin='round'
+									strokeWidth={2}
+									d='M4 6h16M4 12h16M4 18h16'
+								/>
+							</svg>
+						</button>
 					</div>
+				</div>
+
+				{/* Mobile Menu Overlay */}
+				{menuOpen && (
+					<div
+						className='fixed inset-0 bg-black/40 z-40'
+						onClick={() => setMenuOpen(false)}
+					/>
+				)}
+
+				{/* Mobile Menu Panel */}
+				<div
+					className={`fixed top-0 left-0 right-0 bg-white z-50 transform transition-transform duration-300 ${
+						menuOpen ? "translate-y-0" : "-translate-y-full"
+					}`}
+				>
+					<div className='flex items-center justify-between p-4 border-b'>
+						<span className='font-bold text-lg'>PAYHOLD</span>
+						<button onClick={() => setMenuOpen(false)}>✕</button>
+					</div>
+
+					<nav className='p-6 space-y-4'>
+						<Link
+							href='/how-it-works'
+							onClick={() => setMenuOpen(false)}
+							className='block text-secondary-800 font-medium'
+						>
+							How It Works
+						</Link>
+
+						<Link
+							href='/contact'
+							onClick={() => setMenuOpen(false)}
+							className='block text-secondary-800 font-medium'
+						>
+							Contact
+						</Link>
+
+						<Link href='/login' onClick={() => setMenuOpen(false)}>
+							<Button variant='outline' className='w-full'>
+								Log In
+							</Button>
+						</Link>
+
+						<Link href='/create-transaction' onClick={() => setMenuOpen(false)}>
+							<Button className='w-full'>Create Transaction</Button>
+						</Link>
+					</nav>
 				</div>
 			</nav>
 
@@ -346,7 +413,7 @@ export default function HomePage() {
 										/>
 									</svg>
 								</div>
-								<span className='text-lg font-bold text-white'>P</span>
+								<span className='text-lg font-bold text-white'>PayHold</span>
 							</div>
 							<p className='text-sm'>
 								Secure payment and delivery platform for Nigeria

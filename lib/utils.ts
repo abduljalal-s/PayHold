@@ -1,4 +1,4 @@
-import type { TransactionStatus } from "@/types";
+import { TransactionStatus } from "@/types";
 import { type ClassValue, clsx } from "clsx";
 import { format, formatDistanceToNow } from "date-fns";
 import { twMerge } from "tailwind-merge";
@@ -112,28 +112,35 @@ export function isValidStatusTransition(
 /**
  * Get status color for UI
  */
+
 export function getStatusColor(
 	status: TransactionStatus,
 ): "success" | "warning" | "danger" | "info" | "secondary" {
-	if (
-		status === TransactionStatus.COMPLETED ||
-		status === TransactionStatus.DELIVERED
-	) {
-		return "success";
+	switch (status) {
+		case TransactionStatus.COMPLETED:
+		case TransactionStatus.DELIVERED:
+			return "success";
+
+		case TransactionStatus.PENDING_PAYMENT:
+			return "warning";
+
+		case TransactionStatus.DISPUTED:
+			return "danger";
+
+		case TransactionStatus.CANCELLED:
+			return "secondary";
+
+		case TransactionStatus.PAYMENT_CONFIRMED:
+		case TransactionStatus.GOODS_RECEIVED:
+		case TransactionStatus.IN_DISPATCH:
+			return "info";
+
+		default: {
+			// Exhaustive check (future-proof)
+			const _exhaustive: never = status;
+			return _exhaustive;
+		}
 	}
-	if (status === TransactionStatus.PENDING_PAYMENT) {
-		return "warning";
-	}
-	if (
-		status === TransactionStatus.DISPUTED ||
-		status === TransactionStatus.CANCELLED
-	) {
-		return "danger";
-	}
-	if (status === TransactionStatus.CANCELLED) {
-		return "secondary";
-	}
-	return "info";
 }
 
 /**
