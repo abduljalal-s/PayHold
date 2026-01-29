@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import Button from "@/components/ui/Button";
+import Link from "next/link";
 
 // ============================================================================
 // LANDING PAGE - Public facing
