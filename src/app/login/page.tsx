@@ -44,41 +44,36 @@ export default function LoginPage() {
 	};
 
 	return (
-		<div className='min-h-screen bg-gradient-to-br from-primary-50 via-white to-secondary-50 flex items-center justify-center p-4'>
-			<div className='w-full max-w-md'>
+		<div className='min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 flex items-center justify-center p-4 relative overflow-hidden'>
+			{/* Animated Background Elements */}
+			<div className='absolute inset-0'>
+				<div className='absolute top-20 left-10 w-72 h-72 bg-[#0d4d7d]/5 rounded-full blur-3xl animate-pulse'></div>
+				<div className='absolute bottom-20 right-10 w-96 h-96 bg-[#1a7a4a]/5 rounded-full blur-3xl animate-pulse' style={{animationDelay: '1s'}}></div>
+			</div>
+
+			<div className='w-full max-w-md relative z-10'>
 				{/* Logo */}
 				<div className='text-center mb-8'>
-					<Link href='/' className='inline-flex items-center gap-2'>
-						<div className='h-12 w-12 bg-primary-600 rounded-lg flex items-center justify-center'>
-							<svg
-								className='w-7 h-7 text-white'
-								fill='none'
-								viewBox='0 0 24 24'
-								stroke='currentColor'
-							>
-								<path
-									strokeLinecap='round'
-									strokeLinejoin='round'
-									strokeWidth={2}
-									d='M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z'
-								/>
-							</svg>
+					<Link href='/' className='inline-block'>
+						<div className='text-4xl font-bold tracking-tight hover:scale-105 transition-transform duration-300'>
+							<span className='text-[#0d4d7d]'>Pay</span>
+							<span className='text-[#1a7a4a]'>Hold</span>
 						</div>
-						<span className='text-2xl font-bold text-secondary-900'>
-							PayHold
-						</span>
+						<p className='text-sm text-gray-600 mt-2'>Secure Local Delivery</p>
 					</Link>
 				</div>
 
-				<Card>
-					<CardHeader>
-						<CardTitle className='text-center'> Login</CardTitle>
-						<p className='text-center text-sm text-secondary-600 mt-2'>
+				<Card className='border-2 border-gray-100 shadow-2xl'>
+					<CardHeader className='border-b border-gray-100 pb-6'>
+						<CardTitle className='text-center text-2xl font-bold text-gray-900'>
+							Welcome Back
+						</CardTitle>
+						<p className='text-center text-sm text-gray-600 mt-2'>
 							Select a role to explore the dashboard
 						</p>
 					</CardHeader>
 
-					<CardContent>
+					<CardContent className='pt-6'>
 						{/* Demo Login Buttons */}
 						<div className='space-y-3'>
 							<Button
@@ -86,7 +81,7 @@ export default function LoginPage() {
 								size='lg'
 								onClick={() => handleDemoLogin(UserRole.BUYER)}
 								isLoading={isLoading}
-								className='flex items-center justify-center gap-2'
+								className='bg-gradient-to-r from-[#0d4d7d] to-[#1a7a4a] hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3 text-base font-semibold py-6'
 							>
 								<svg
 									className='w-5 h-5'
@@ -107,10 +102,9 @@ export default function LoginPage() {
 							<Button
 								fullWidth
 								size='lg'
-								variant='secondary'
 								onClick={() => handleDemoLogin(UserRole.SELLER)}
 								isLoading={isLoading}
-								className='flex items-center justify-center gap-2'
+								className='bg-white border-2 border-[#1a7a4a] text-[#1a7a4a] hover:bg-[#1a7a4a] hover:text-white hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3 text-base font-semibold py-6'
 							>
 								<svg
 									className='w-5 h-5'
@@ -131,10 +125,9 @@ export default function LoginPage() {
 							<Button
 								fullWidth
 								size='lg'
-								variant='outline'
 								onClick={() => handleDemoLogin(UserRole.ADMIN)}
 								isLoading={isLoading}
-								className='flex items-center justify-center gap-2'
+								className='bg-white border-2 border-[#0d4d7d] text-[#0d4d7d] hover:bg-[#0d4d7d] hover:text-white hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3 text-base font-semibold py-6'
 							>
 								<svg
 									className='w-5 h-5'
@@ -160,12 +153,12 @@ export default function LoginPage() {
 						</div>
 
 						{/* Divider */}
-						<div className='relative my-6'>
+						<div className='relative my-8'>
 							<div className='absolute inset-0 flex items-center'>
-								<div className='w-full border-t border-secondary-200' />
+								<div className='w-full border-t border-gray-200' />
 							</div>
 							<div className='relative flex justify-center text-sm'>
-								<span className='px-4 bg-white text-secondary-500'>
+								<span className='px-4 bg-white text-gray-500 font-medium'>
 									Or login with credentials
 								</span>
 							</div>
@@ -173,30 +166,59 @@ export default function LoginPage() {
 
 						{/* Actual Login Form (for production) */}
 						<form className='space-y-4'>
-							<Input
-								label='Email'
-								type='email'
-								placeholder='your@email.com'
-								disabled
-							/>
+							<div>
+								<Input
+									label='Email'
+									type='email'
+									placeholder='your@email.com'
+									disabled
+									className='bg-gray-50'
+								/>
+							</div>
 
-							<Input
-								label='Password'
-								type='password'
-								placeholder='••••••••'
-								disabled
-							/>
+							<div>
+								<Input
+									label='Password'
+									type='password'
+									placeholder='••••••••'
+									disabled
+									className='bg-gray-50'
+								/>
+							</div>
 
-							<Button fullWidth disabled className='opacity-50'>
+							<div className='flex items-center justify-between text-sm'>
+								<label className='flex items-center gap-2 text-gray-600 cursor-not-allowed'>
+									<input type='checkbox' disabled className='rounded border-gray-300' />
+									<span>Remember me</span>
+								</label>
+								<Link
+									href='/forgot-password'
+									className='text-[#0d4d7d] hover:text-[#1a7a4a] font-medium transition-colors'
+								>
+									Forgot password?
+								</Link>
+							</div>
+
+							<Button 
+								fullWidth 
+								disabled 
+								className='opacity-50 cursor-not-allowed bg-gray-400 py-6 text-base font-semibold'
+							>
 								Login (Coming Soon)
 							</Button>
 						</form>
 
-						<p className='text-center text-sm text-secondary-600 mt-6'>
+						<div className='mt-6 p-4 bg-blue-50 border border-blue-100 rounded-lg'>
+							<p className='text-sm text-gray-700 text-center'>
+								<span className='font-semibold text-[#0d4d7d]'>Demo Mode:</span> Use the role buttons above to explore PayHold
+							</p>
+						</div>
+
+						<p className='text-center text-sm text-gray-600 mt-6'>
 							Don't have an account?{" "}
 							<Link
 								href='/register'
-								className='text-primary-600 hover:text-primary-700 font-medium'
+								className='text-[#0d4d7d] hover:text-[#1a7a4a] font-semibold transition-colors'
 							>
 								Sign up
 							</Link>
@@ -204,11 +226,39 @@ export default function LoginPage() {
 					</CardContent>
 				</Card>
 
-				<p className='text-center text-sm text-secondary-600 mt-6'>
-					<Link href='/' className='hover:text-primary-600 transition-colors'>
-						← Back to Home
+				<div className='text-center mt-8'>
+					<Link 
+						href='/' 
+						className='inline-flex items-center gap-2 text-gray-600 hover:text-[#0d4d7d] font-medium transition-all hover:gap-3'
+					>
+						<svg className='w-5 h-5' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+							<path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M10 19l-7-7m0 0l7-7m-7 7h18' />
+						</svg>
+						Back to Home
 					</Link>
-				</p>
+				</div>
+
+				{/* Trust Badge */}
+				<div className='mt-8 flex items-center justify-center gap-6 text-sm text-gray-600'>
+					<div className='flex items-center gap-2'>
+						<svg className='w-5 h-5 text-[#1a7a4a]' fill='currentColor' viewBox='0 0 20 20'>
+							<path fillRule='evenodd' d='M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z' clipRule='evenodd' />
+						</svg>
+						<span className='font-medium'>Secure</span>
+					</div>
+					<div className='flex items-center gap-2'>
+						<svg className='w-5 h-5 text-[#0d4d7d]' fill='currentColor' viewBox='0 0 20 20'>
+							<path fillRule='evenodd' d='M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z' clipRule='evenodd' />
+						</svg>
+						<span className='font-medium'>Protected</span>
+					</div>
+					<div className='flex items-center gap-2'>
+						<svg className='w-5 h-5 text-[#1a7a4a]' fill='currentColor' viewBox='0 0 20 20'>
+							<path fillRule='evenodd' d='M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z' clipRule='evenodd' />
+						</svg>
+						<span className='font-medium'>Trusted</span>
+					</div>
+				</div>
 			</div>
 		</div>
 	);

@@ -5,7 +5,8 @@ import Link from "next/link";
 import { useState } from "react";
 
 // ============================================================================
-// LANDING PAGE - Public facing
+// PAYHOLD LANDING PAGE - Professional Redesign
+// Brand Colors: #0d4d7d (Deep Blue) + #1a7a4a (Trust Green)
 // ============================================================================
 
 export default function HomePage() {
@@ -13,52 +14,53 @@ export default function HomePage() {
 
 	return (
 		<div className='min-h-screen bg-white'>
-			{/* Navigation */}
-			<nav className='border-b border-secondary-200 bg-white sticky top-0 z-40 shadow-sm'>
+			{/* Navigation - Fixed Header */}
+			<nav className='fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm'>
 				<div className='container mx-auto px-4 sm:px-6 lg:px-8'>
-					<div className='flex items-center justify-between h-16'>
-						{/* Logo */}
-						<div className='flex items-center gap-2'>
-							<div className='h-10 w-10 bg-primary-600 rounded-lg flex items-center justify-center'>
-								<svg
-									className='w-6 h-6 text-white'
-									fill='none'
-									viewBox='0 0 24 24'
-									stroke='currentColor'
-								>
-									<path
-										strokeLinecap='round'
-										strokeLinejoin='round'
-										strokeWidth={2}
-										d='M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z'
-									/>
-								</svg>
+					<div className='flex items-center justify-between h-20'>
+						{/* Logo - Text Only Brand */}
+						<Link href='/' className='flex items-center'>
+							<div className='text-3xl font-bold tracking-tight'>
+								<span className='text-[#0d4d7d]'>Pay</span>
+								<span className='text-[#1a7a4a]'>Hold</span>
 							</div>
-							<span className='text-xl font-bold text-secondary-900'>
-								PAYHOLD
-							</span>
-						</div>
+						</Link>
 
-						{/* Desktop Nav */}
-						<div className='hidden md:flex items-center gap-6'>
+						{/* Desktop Navigation */}
+						<div className='hidden lg:flex items-center gap-8'>
 							<Link
 								href='/how-it-works'
-								className='text-secondary-700 hover:text-primary-600 transition-colors'
+								className='text-gray-700 hover:text-[#0d4d7d] font-medium transition-all duration-200 hover:translate-y-[-1px]'
 							>
 								How It Works
 							</Link>
-							<Link href='/create-transaction'>
-								<Button variant='outline'>Create Transaction</Button>
+							<Link
+								href='/for-dispatchers'
+								className='text-gray-700 hover:text-[#1a7a4a] font-medium transition-all duration-200 hover:translate-y-[-1px]'
+							>
+								For Dispatchers
 							</Link>
 							<Link
 								href='/contact'
-								className='text-secondary-700 hover:text-primary-600 transition-colors'
+								className='text-gray-700 hover:text-[#0d4d7d] font-medium transition-all duration-200 hover:translate-y-[-1px]'
 							>
 								Contact
 							</Link>
 							<Link href='/login'>
-								<Button variant='outline' size='sm'>
+								<Button 
+									variant='outline' 
+									size='sm'
+									className='border-[#0d4d7d] text-[#0d4d7d] hover:bg-[#0d4d7d] hover:text-white transition-all duration-300'
+								>
 									Log In
+								</Button>
+							</Link>
+							<Link href='/create-transaction'>
+								<Button 
+									size='sm'
+									className='bg-gradient-to-r from-[#0d4d7d] to-[#1a7a4a] hover:shadow-lg hover:scale-105 transition-all duration-300'
+								>
+									Create Transaction
 								</Button>
 							</Link>
 						</div>
@@ -66,11 +68,11 @@ export default function HomePage() {
 						{/* Mobile Hamburger */}
 						<button
 							onClick={() => setMenuOpen(true)}
-							className='md:hidden p-2 border border-secondary-200 rounded-lg'
+							className='lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors'
 							aria-label='Open menu'
 						>
 							<svg
-								className='w-6 h-6'
+								className='w-6 h-6 text-gray-700'
 								fill='none'
 								stroke='currentColor'
 								viewBox='0 0 24 24'
@@ -89,119 +91,156 @@ export default function HomePage() {
 				{/* Mobile Menu Overlay */}
 				{menuOpen && (
 					<div
-						className='fixed inset-0 bg-black/40 z-40'
+						className='fixed inset-0 bg-black/40 z-40 lg:hidden'
 						onClick={() => setMenuOpen(false)}
 					/>
 				)}
 
 				{/* Mobile Menu Panel */}
 				<div
-					className={`fixed top-0 left-0 right-0 bg-white z-50 transform transition-transform duration-300 ${
-						menuOpen ? "translate-y-0" : "-translate-y-full"
+					className={`fixed top-0 right-0 bottom-0 w-[280px] bg-white z-50 shadow-2xl transform transition-transform duration-300 ease-out lg:hidden ${
+						menuOpen ? "translate-x-0" : "translate-x-full"
 					}`}
 				>
-					<div className='flex items-center justify-between p-4 border-b'>
-						<span className='font-bold text-lg'>PAYHOLD</span>
-						<button onClick={() => setMenuOpen(false)}>✕</button>
+					<div className='flex items-center justify-between p-6 border-b'>
+						<div className='text-2xl font-bold'>
+							<span className='text-[#0d4d7d]'>Pay</span>
+							<span className='text-[#1a7a4a]'>Hold</span>
+						</div>
+						<button 
+							onClick={() => setMenuOpen(false)}
+							className='p-2 hover:bg-gray-100 rounded-lg transition-colors'
+						>
+							<svg className='w-6 h-6' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+								<path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M6 18L18 6M6 6l12 12' />
+							</svg>
+						</button>
 					</div>
 
 					<nav className='p-6 space-y-4'>
 						<Link
 							href='/how-it-works'
 							onClick={() => setMenuOpen(false)}
-							className='block text-secondary-800 font-medium'
+							className='block text-gray-700 hover:text-[#0d4d7d] font-medium py-2 transition-colors'
 						>
 							How It Works
 						</Link>
-
+						<Link
+							href='/for-dispatchers'
+							onClick={() => setMenuOpen(false)}
+							className='block text-gray-700 hover:text-[#1a7a4a] font-medium py-2 transition-colors'
+						>
+							For Dispatchers
+						</Link>
 						<Link
 							href='/contact'
 							onClick={() => setMenuOpen(false)}
-							className='block text-secondary-800 font-medium'
+							className='block text-gray-700 hover:text-[#0d4d7d] font-medium py-2 transition-colors'
 						>
 							Contact
 						</Link>
-
-						<Link href='/login' onClick={() => setMenuOpen(false)}>
-							<Button variant='outline' className='w-full'>
-								Log In
-							</Button>
-						</Link>
-
-						<Link href='/create-transaction' onClick={() => setMenuOpen(false)}>
-							<Button className='w-full'>Create Transaction</Button>
-						</Link>
+						<div className='pt-4 space-y-3'>
+							<Link href='/login' onClick={() => setMenuOpen(false)}>
+								<Button 
+									variant='outline' 
+									className='w-full border-[#0d4d7d] text-[#0d4d7d]'
+								>
+									Log In
+								</Button>
+							</Link>
+							<Link href='/create-transaction' onClick={() => setMenuOpen(false)}>
+								<Button className='w-full bg-gradient-to-r from-[#0d4d7d] to-[#1a7a4a]'>
+									Create Transaction
+								</Button>
+							</Link>
+						</div>
 					</nav>
 				</div>
 			</nav>
 
-			{/* Hero Section */}
-			<section className='py-16 md:py-24 bg-gradient-to-br from-primary-50 via-white to-secondary-50'>
-				<div className='container mx-auto px-4 sm:px-6 lg:px-8'>
-					<div className='max-w-4xl mx-auto text-center'>
-						<div className='inline-flex items-center gap-2 bg-primary-100 text-primary-700 px-4 py-2 rounded-full text-sm font-medium mb-6'>
-							<svg className='w-4 h-4' fill='currentColor' viewBox='0 0 20 20'>
+			{/* Hero Section - Modern & Bold */}
+			<section className='relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden'>
+				{/* Animated Background */}
+				<div className='absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-green-50'>
+					<div className='absolute top-20 left-10 w-72 h-72 bg-[#0d4d7d]/5 rounded-full blur-3xl animate-pulse'></div>
+					<div className='absolute bottom-20 right-10 w-96 h-96 bg-[#1a7a4a]/5 rounded-full blur-3xl animate-pulse' style={{animationDelay: '1s'}}></div>
+				</div>
+
+				<div className='container mx-auto px-4 sm:px-6 lg:px-8 relative z-10'>
+					<div className='max-w-5xl mx-auto text-center'>
+						{/* Trust Badge */}
+						<div className='inline-flex items-center gap-2 bg-white border border-[#0d4d7d]/20 px-5 py-2.5 rounded-full text-sm font-semibold text-[#0d4d7d] mb-8 shadow-sm hover:shadow-md transition-shadow'>
+							<svg className='w-5 h-5 text-[#1a7a4a]' fill='currentColor' viewBox='0 0 20 20'>
 								<path
 									fillRule='evenodd'
-									d='M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z'
+									d='M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z'
 									clipRule='evenodd'
 								/>
 							</svg>
-							Trusted by thousands of Nigerians
+							Trusted by thousands across Nigeria
 						</div>
 
-						<h1 className='text-4xl md:text-5xl lg:text-6xl font-bold text-secondary-900 mb-6 leading-tight'>
-							Buy & Sell with{" "}
-							<span className='text-primary-600'>Complete Security</span>
+						{/* Main Headline */}
+						<h1 className='text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight tracking-tight'>
+							Secure Payments.{" "}
+							<span className='text-[#0d4d7d]'>Protected</span>{" "}
+							<span className='text-[#1a7a4a]'>Delivery</span>.
 						</h1>
 
-						<p className='text-lg md:text-xl text-secondary-600 mb-8 max-w-3xl mx-auto'>
-							PayHold is a secure exchange platform that protects buyers and
-							sellers by holding payment, receiving goods, and dispatching only
-							after verification.
+						<p className='text-xl md:text-2xl text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed'>
+							PayHold holds your payment securely, verifies goods, and releases funds only after confirmed delivery. Buy and sell locally with complete peace of mind.
 						</p>
 
-						<div className='flex flex-col sm:flex-row gap-4 justify-center'>
+						{/* CTA Buttons */}
+						<div className='flex flex-col sm:flex-row gap-4 justify-center items-center mb-16'>
 							<Link href='/create-transaction'>
-								<Button size='lg' className='w-full sm:w-auto'>
-									Create Transaction
+								<Button 
+									size='lg' 
+									className='w-full sm:w-auto px-8 py-6 text-lg bg-gradient-to-r from-[#0d4d7d] to-[#1a7a4a] hover:shadow-2xl hover:scale-105 transition-all duration-300'
+								>
+									<span className='flex items-center gap-2'>
+										Create Transaction
+										<svg className='w-5 h-5' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+											<path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M13 7l5 5m0 0l-5 5m5-5H6' />
+										</svg>
+									</span>
 								</Button>
 							</Link>
 							<Link href='/how-it-works'>
 								<Button
 									variant='outline'
 									size='lg'
-									className='w-full sm:w-auto'
+									className='w-full sm:w-auto px-8 py-6 text-lg border-2 border-[#0d4d7d] text-[#0d4d7d] hover:bg-[#0d4d7d] hover:text-white transition-all duration-300'
 								>
-									Learn How It Works
+									How It Works
 								</Button>
 							</Link>
 						</div>
 
-						{/* Trust indicators */}
-						<div className='mt-12 pt-8 border-t border-secondary-200'>
-							<div className='grid grid-cols-3 gap-8 max-w-2xl mx-auto'>
-								<div>
-									<div className='text-3xl font-bold text-primary-600 mb-1'>
-										24-72h
-									</div>
-									<div className='text-sm text-secondary-600'>
-										Secure Holding
-									</div>
+						{/* Trust Metrics */}
+						<div className='grid grid-cols-3 gap-6 md:gap-12 max-w-3xl mx-auto pt-12 border-t border-gray-200'>
+							<div className='text-center'>
+								<div className='text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#0d4d7d] to-[#1a7a4a] bg-clip-text text-transparent mb-2'>
+									24-72h
 								</div>
-								<div>
-									<div className='text-3xl font-bold text-primary-600 mb-1'>
-										100%
-									</div>
-									<div className='text-sm text-secondary-600'>
-										Buyer Protection
-									</div>
+								<div className='text-sm md:text-base text-gray-600 font-medium'>
+									Secure Holding Period
 								</div>
-								<div>
-									<div className='text-3xl font-bold text-primary-600 mb-1'>
-										Fast
-									</div>
-									<div className='text-sm text-secondary-600'>Dispatch</div>
+							</div>
+							<div className='text-center'>
+								<div className='text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#0d4d7d] to-[#1a7a4a] bg-clip-text text-transparent mb-2'>
+									100%
+								</div>
+								<div className='text-sm md:text-base text-gray-600 font-medium'>
+									Buyer Protection
+								</div>
+							</div>
+							<div className='text-center'>
+								<div className='text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#0d4d7d] to-[#1a7a4a] bg-clip-text text-transparent mb-2'>
+									₦0
+								</div>
+								<div className='text-sm md:text-base text-gray-600 font-medium'>
+									Setup Fees
 								</div>
 							</div>
 						</div>
@@ -209,253 +248,344 @@ export default function HomePage() {
 				</div>
 			</section>
 
-			{/* How It Works Section */}
-			<section className='py-16 md:py-24 bg-white'>
+			{/* How It Works - Step by Step */}
+			<section className='py-20 md:py-32 bg-white relative'>
 				<div className='container mx-auto px-4 sm:px-6 lg:px-8'>
-					<div className='text-center mb-12'>
-						<h2 className='text-3xl md:text-4xl font-bold text-secondary-900 mb-4'>
+					<div className='text-center mb-16'>
+						<h2 className='text-4xl md:text-5xl font-bold text-gray-900 mb-4'>
 							How PayHold Works
 						</h2>
-						<p className='text-lg text-secondary-600 max-w-2xl mx-auto'>
-							Simple, secure, and transparent process for both buyers and
-							sellers
+						<p className='text-xl text-gray-600 max-w-2xl mx-auto'>
+							Four simple steps to secure, worry-free transactions
 						</p>
 					</div>
 
-					<div className='grid md:grid-cols-4 gap-8 max-w-5xl mx-auto'>
-						{[
-							{
-								step: "1",
-								title: "Buyer Pays Platform",
-								description:
-									"Buyer creates transaction and pays the total amount to our secure platform",
-								icon: (
-									<svg
-										className='w-8 h-8'
-										fill='none'
-										viewBox='0 0 24 24'
-										stroke='currentColor'
-									>
-										<path
-											strokeLinecap='round'
-											strokeLinejoin='round'
-											strokeWidth={2}
-											d='M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z'
-										/>
-									</svg>
-								),
-							},
-							{
-								step: "2",
-								title: "Seller Drops Off",
-								description:
-									"Seller brings goods to our secure location for verification",
-								icon: (
-									<svg
-										className='w-8 h-8'
-										fill='none'
-										viewBox='0 0 24 24'
-										stroke='currentColor'
-									>
-										<path
-											strokeLinecap='round'
-											strokeLinejoin='round'
-											strokeWidth={2}
-											d='M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4'
-										/>
-									</svg>
-								),
-							},
-							{
-								step: "3",
-								title: "We Dispatch",
-								description:
-									"We verify goods and dispatch to buyer with tracking",
-								icon: (
-									<svg
-										className='w-8 h-8'
-										fill='none'
-										viewBox='0 0 24 24'
-										stroke='currentColor'
-									>
-										<path d='M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z' />
-										<path
-											strokeLinecap='round'
-											strokeLinejoin='round'
-											strokeWidth={2}
-											d='M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0'
-										/>
-									</svg>
-								),
-							},
-							{
-								step: "4",
-								title: "Payment Released",
-								description:
-									"After buyer confirms delivery, we release payment to seller",
-								icon: (
-									<svg
-										className='w-8 h-8'
-										fill='none'
-										viewBox='0 0 24 24'
-										stroke='currentColor'
-									>
-										<path
-											strokeLinecap='round'
-											strokeLinejoin='round'
-											strokeWidth={2}
-											d='M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'
-										/>
-									</svg>
-								),
-							},
-						].map((item) => (
-							<div key={item.step} className='text-center'>
-								<div className='inline-flex items-center justify-center w-16 h-16 bg-primary-100 text-primary-600 rounded-2xl mb-4'>
-									{item.icon}
+					<div className='max-w-6xl mx-auto'>
+						<div className='grid md:grid-cols-2 lg:grid-cols-4 gap-8'>
+							{[
+								{
+									step: "01",
+									title: "Buyer Pays Platform",
+									description:
+										"Buyer creates transaction and pays the total amount to our secure escrow platform",
+									icon: (
+										<svg className='w-10 h-10' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+											<path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z' />
+										</svg>
+									),
+									color: "#0d4d7d",
+								},
+								{
+									step: "02",
+									title: "Seller Ships Item",
+									description:
+										"Seller receives notification and ships the goods to PayHold for verification",
+									icon: (
+										<svg className='w-10 h-10' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+											<path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4' />
+										</svg>
+									),
+									color: "#1a7a4a",
+								},
+								{
+									step: "03",
+									title: "We Verify & Dispatch",
+									description:
+										"We inspect the item, confirm it matches description, then dispatch to buyer",
+									icon: (
+										<svg className='w-10 h-10' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+											<path d='M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z' />
+											<path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0' />
+										</svg>
+									),
+									color: "#0d4d7d",
+								},
+								{
+									step: "04",
+									title: "Payment Released",
+									description:
+										"After buyer confirms delivery, we automatically release payment to the seller",
+									icon: (
+										<svg className='w-10 h-10' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+											<path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z' />
+										</svg>
+									),
+									color: "#1a7a4a",
+								},
+							].map((item, index) => (
+								<div 
+									key={item.step} 
+									className='relative group hover:scale-105 transition-transform duration-300'
+									style={{animationDelay: `${index * 100}ms`}}
+								>
+									<div className='bg-white border-2 border-gray-100 rounded-2xl p-8 h-full hover:border-[#0d4d7d]/30 hover:shadow-xl transition-all duration-300'>
+										{/* Step Number */}
+										<div className='text-6xl font-bold text-gray-100 mb-4'>
+											{item.step}
+										</div>
+										
+										{/* Icon */}
+										<div 
+											className='inline-flex items-center justify-center w-16 h-16 rounded-xl mb-6 transition-all duration-300 group-hover:scale-110'
+											style={{
+												backgroundColor: `${item.color}15`,
+												color: item.color
+											}}
+										>
+											{item.icon}
+										</div>
+										
+										{/* Content */}
+										<h3 className='text-xl font-bold text-gray-900 mb-3'>
+											{item.title}
+										</h3>
+										<p className='text-gray-600 leading-relaxed'>
+											{item.description}
+										</p>
+									</div>
+
+									{/* Connector Line (Desktop Only) */}
+									{index < 3 && (
+										<div className='hidden lg:block absolute top-20 -right-4 w-8 h-0.5 bg-gradient-to-r from-[#0d4d7d] to-[#1a7a4a] opacity-30'></div>
+									)}
 								</div>
-								<div className='text-sm font-semibold text-primary-600 mb-2'>
-									Step {item.step}
-								</div>
-								<h3 className='text-lg font-semibold text-secondary-900 mb-2'>
-									{item.title}
-								</h3>
-								<p className='text-sm text-secondary-600'>{item.description}</p>
-							</div>
-						))}
+							))}
+						</div>
 					</div>
 				</div>
 			</section>
 
-			{/* Why Choose Us Section */}
-			<section className='py-16 md:py-24 bg-secondary-50'>
+			{/* Why Choose PayHold */}
+			<section className='py-20 md:py-32 bg-gradient-to-br from-gray-50 to-blue-50/30'>
 				<div className='container mx-auto px-4 sm:px-6 lg:px-8'>
-					<div className='text-center mb-12'>
-						<h2 className='text-3xl md:text-4xl font-bold text-secondary-900 mb-4'>
-							Why Choose EscrowNG?
+					<div className='text-center mb-16'>
+						<h2 className='text-4xl md:text-5xl font-bold text-gray-900 mb-4'>
+							Why Choose PayHold?
 						</h2>
+						<p className='text-xl text-gray-600 max-w-2xl mx-auto'>
+							The most trusted intermediary delivery service in Nigeria
+						</p>
 					</div>
 
-					<div className='grid md:grid-cols-3 gap-8 max-w-5xl mx-auto'>
+					<div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto'>
 						{[
 							{
 								title: "Complete Security",
 								description:
-									"Your money is safe. Goods are never released without confirmed payment. Payment is never released without confirmed delivery.",
+									"Your money is held in secure escrow. Goods are never released without payment. Payment never released without delivery confirmation.",
 								icon: "🔒",
+								gradient: "from-[#0d4d7d] to-[#1a7a4a]"
 							},
 							{
 								title: "Fast & Reliable",
 								description:
-									"Quick verification and dispatch. Most transactions complete within 24-48 hours.",
+									"Quick verification and same-day dispatch. Most transactions complete within 24-48 hours with full tracking.",
 								icon: "⚡",
+								gradient: "from-[#1a7a4a] to-[#0d4d7d]"
 							},
 							{
 								title: "Dispute Protection",
 								description:
-									"48-hour dispute window after delivery. Our team reviews every case fairly.",
+									"48-hour dispute window after delivery. Our experienced team reviews every case fairly and impartially.",
 								icon: "⚖️",
+								gradient: "from-[#0d4d7d] to-[#1a7a4a]"
 							},
-						].map((feature) => (
+							{
+								title: "Verified Couriers",
+								description:
+									"All dispatchers are background-checked and rated by the community. Transparent ratings ensure quality service.",
+								icon: "✓",
+								gradient: "from-[#1a7a4a] to-[#0d4d7d]"
+							},
+							{
+								title: "Real-Time Tracking",
+								description:
+									"Track your package every step of the way with GPS tracking and instant notifications at each milestone.",
+								icon: "📍",
+								gradient: "from-[#0d4d7d] to-[#1a7a4a]"
+							},
+							{
+								title: "Transparent Pricing",
+								description:
+									"No hidden fees. Clear pricing upfront with low service charges. You always know exactly what you're paying.",
+								icon: "💰",
+								gradient: "from-[#1a7a4a] to-[#0d4d7d]"
+							},
+						].map((feature, index) => (
 							<div
 								key={feature.title}
-								className='bg-white p-6 rounded-xl border border-secondary-200'
+								className='bg-white rounded-2xl p-8 border-2 border-gray-100 hover:border-[#0d4d7d]/30 hover:shadow-2xl transition-all duration-300 group'
+								style={{animationDelay: `${index * 50}ms`}}
 							>
-								<div className='text-4xl mb-4'>{feature.icon}</div>
-								<h3 className='text-xl font-semibold text-secondary-900 mb-2'>
+								<div className='text-5xl mb-6 group-hover:scale-110 transition-transform duration-300'>
+									{feature.icon}
+								</div>
+								<h3 className='text-2xl font-bold text-gray-900 mb-4'>
 									{feature.title}
 								</h3>
-								<p className='text-secondary-600'>{feature.description}</p>
+								<p className='text-gray-600 leading-relaxed mb-4'>
+									{feature.description}
+								</p>
+								<div className={`h-1 w-16 bg-gradient-to-r ${feature.gradient} rounded-full group-hover:w-24 transition-all duration-300`}></div>
 							</div>
 						))}
 					</div>
 				</div>
 			</section>
 
-			{/* CTA Section */}
-			<section className='py-16 md:py-24 bg-primary-600'>
-				<div className='container mx-auto px-4 sm:px-6 lg:px-8 text-center'>
-					<h2 className='text-3xl md:text-4xl font-bold text-white mb-4'>
-						Ready to Transact Safely?
-					</h2>
-					<p className='text-lg text-primary-100 mb-8 max-w-2xl mx-auto'>
-						Join thousands of Nigerians who buy and sell with confidence
-					</p>
-					<Link
-						href='#'
-						className='space-x-4 bg-white text-primary-600 hover:bg-primary-300'
-					>
-						Create Your First Transaction &nbsp;
-					</Link>
-					<br />
-					<Link
-						href='#'
-						className='space-x-4 bg-white text-primary-600 hover:bg-primary-300'
-					>
-						Join Dispatchers Program
-					</Link>
-					<div className='my-8 md:my-12'>
-						<hr className='border-primary-200' />
+			{/* Dispatcher Program - USSD Activation */}
+			<section className='py-20 md:py-32 bg-white'>
+				<div className='container mx-auto px-4 sm:px-6 lg:px-8'>
+					<div className='max-w-5xl mx-auto'>
+						<div className='bg-gradient-to-br from-[#0d4d7d] to-[#1a7a4a] rounded-3xl p-8 md:p-12 lg:p-16 text-white relative overflow-hidden'>
+							{/* Decorative Elements */}
+							<div className='absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl'></div>
+							<div className='absolute bottom-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl'></div>
+							
+							<div className='relative z-10'>
+								<div className='text-center mb-12'>
+									<h2 className='text-4xl md:text-5xl font-bold mb-4'>
+										Join Our Dispatcher Network
+									</h2>
+									<p className='text-xl text-white/90 max-w-3xl mx-auto'>
+										Earn money delivering packages in your area. Simple USSD activation makes it easy to get started.
+									</p>
+								</div>
+
+								{/* USSD Code Display */}
+								<div className='bg-white/10 backdrop-blur-md rounded-2xl p-8 mb-8 border border-white/20'>
+									<div className='text-center'>
+										<p className='text-white/90 text-lg mb-4'>Dial to Activate</p>
+										<div className='text-6xl md:text-7xl font-bold mb-4 tracking-wider'>
+											*565#
+										</div>
+										<p className='text-white/80'>
+											Available for bike and car dispatchers
+										</p>
+									</div>
+								</div>
+
+								{/* How Dispatcher System Works */}
+								<div className='grid md:grid-cols-2 gap-6 mb-8'>
+									<div className='bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20'>
+										<div className='text-3xl mb-3'>📱</div>
+										<h3 className='text-xl font-bold mb-2'>Simple Activation</h3>
+										<p className='text-white/90'>
+											Dial *565# to instantly activate your availability status on the PayHold platform
+										</p>
+									</div>
+									<div className='bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20'>
+										<div className='text-3xl mb-3'>🔄</div>
+										<h3 className='text-xl font-bold mb-2'>Fair Distribution</h3>
+										<p className='text-white/90'>
+											Automatic rotation system ensures fair job distribution among all active dispatchers
+										</p>
+									</div>
+									<div className='bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20'>
+										<div className='text-3xl mb-3'>💵</div>
+										<h3 className='text-xl font-bold mb-2'>Competitive Rates</h3>
+										<p className='text-white/90'>
+											Earn competitive rates for every delivery with weekly payouts directly to your account
+										</p>
+									</div>
+									<div className='bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20'>
+										<div className='text-3xl mb-3'>⭐</div>
+										<h3 className='text-xl font-bold mb-2'>Build Your Rating</h3>
+										<p className='text-white/90'>
+											Quality service leads to better ratings, which means more delivery opportunities
+										</p>
+									</div>
+								</div>
+
+								<div className='text-center'>
+									<Link href='/for-dispatchers'>
+										<Button 
+											size='lg' 
+											className='bg-white text-[#0d4d7d] hover:bg-white/90 hover:scale-105 transition-all duration-300 px-8 py-6 text-lg font-semibold'
+										>
+											Learn More About Dispatcher Program
+										</Button>
+									</Link>
+								</div>
+							</div>
+						</div>
 					</div>
-					<Link href='#' className='mt-2 text-3xl text-black'>
-						DAIL *565#
-					</Link>
-					<br />{" "}
-					<h4 className='mt-2 text-lg text-white'>
-						To support last-mile delivery and physical goods exchange, PayHold
-						introduces a USSD-based dispatcher activation system.
-					</h4>{" "}
-					<p className='mt-4 text-1xl text-center'>
-						How it works: Dispatch riders (motorcycles) or car dispatchers dial
-						a designated USSD code <span className='text-2xl'>*565#</span> from
-						their registered phone number. Dialing the code activates the
-						dispatcher’s availability status on the PayHold platform. Once
-						activated: The dispatcher is automatically detected by PayHold as
-						“online/available”. Their phone number, dispatcher type (bike or
-						car), and activation timestamp are logged. When a transaction
-						requires delivery: PayHold rotates through available dispatchers,
-						automatically selecting or calling them in sequence. This prevents
-						favoritism, reduces manual coordination, and ensures fair job
-						distribution.
-					</p>
+				</div>
+			</section>
+
+			{/* Final CTA */}
+			<section className='py-20 md:py-32 bg-gradient-to-br from-blue-50 via-white to-green-50'>
+				<div className='container mx-auto px-4 sm:px-6 lg:px-8 text-center'>
+					<div className='max-w-4xl mx-auto'>
+						<h2 className='text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6'>
+							Ready to Transact <span className='text-[#0d4d7d]'>Safely</span>?
+						</h2>
+						<p className='text-xl md:text-2xl text-gray-600 mb-10 max-w-2xl mx-auto'>
+							Join thousands of Nigerians who buy and sell with complete confidence and protection
+						</p>
+						<div className='flex flex-col sm:flex-row gap-4 justify-center'>
+							<Link href='/create-transaction'>
+								<Button 
+									size='lg'
+									className='w-full sm:w-auto px-10 py-6 text-lg bg-gradient-to-r from-[#0d4d7d] to-[#1a7a4a] hover:shadow-2xl hover:scale-105 transition-all duration-300'
+								>
+									Create Your First Transaction
+								</Button>
+							</Link>
+							<Link href='/for-dispatchers'>
+								<Button 
+									variant='outline'
+									size='lg'
+									className='w-full sm:w-auto px-10 py-6 text-lg border-2 border-[#1a7a4a] text-[#1a7a4a] hover:bg-[#1a7a4a] hover:text-white transition-all duration-300'
+								>
+									Become a Dispatcher
+								</Button>
+							</Link>
+						</div>
+					</div>
 				</div>
 			</section>
 
 			{/* Footer */}
-			<footer className='bg-secondary-900 text-secondary-300 py-12'>
+			<footer className='bg-gray-900 text-gray-300 py-16'>
 				<div className='container mx-auto px-4 sm:px-6 lg:px-8'>
-					<div className='grid md:grid-cols-4 gap-8 mb-8'>
-						<div>
-							<div className='flex items-center gap-2 mb-4'>
-								<div className='h-8 w-8 bg-primary-600 rounded-lg flex items-center justify-center'>
-									<svg
-										className='w-5 h-5 text-white'
-										fill='none'
-										viewBox='0 0 24 24'
-										stroke='currentColor'
-									>
-										<path
-											strokeLinecap='round'
-											strokeLinejoin='round'
-											strokeWidth={2}
-											d='M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z'
-										/>
-									</svg>
-								</div>
-								<span className='text-lg font-bold text-white'>PayHold</span>
+					<div className='grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12'>
+						{/* Brand Column */}
+						<div className='lg:col-span-1'>
+							<div className='text-3xl font-bold mb-4'>
+								<span className='text-[#0d4d7d]'>Pay</span>
+								<span className='text-[#1a7a4a]'>Hold</span>
 							</div>
-							<p className='text-sm'>
-								Secure payment and delivery platform for Nigeria
+							<p className='text-gray-400 mb-4 leading-relaxed'>
+								Secure payment and delivery platform for Nigeria. Buy and sell locally with complete confidence.
 							</p>
+							<div className='flex gap-4'>
+								<a href='#' className='w-10 h-10 bg-gray-800 hover:bg-[#0d4d7d] rounded-lg flex items-center justify-center transition-colors'>
+									<svg className='w-5 h-5' fill='currentColor' viewBox='0 0 24 24'>
+										<path d='M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z'/>
+									</svg>
+								</a>
+								<a href='#' className='w-10 h-10 bg-gray-800 hover:bg-[#1a7a4a] rounded-lg flex items-center justify-center transition-colors'>
+									<svg className='w-5 h-5' fill='currentColor' viewBox='0 0 24 24'>
+										<path d='M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z'/>
+									</svg>
+								</a>
+								<a href='#' className='w-10 h-10 bg-gray-800 hover:bg-[#0d4d7d] rounded-lg flex items-center justify-center transition-colors'>
+									<svg className='w-5 h-5' fill='currentColor' viewBox='0 0 24 24'>
+										<path d='M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.324v-21.35c0-.732-.593-1.325-1.325-1.325z'/>
+									</svg>
+								</a>
+							</div>
 						</div>
 
+						{/* Company Links */}
 						<div>
-							<h4 className='font-semibold text-white mb-4'>Company</h4>
-							<ul className='space-y-2 text-sm'>
+							<h4 className='font-bold text-white mb-4 text-lg'>Company</h4>
+							<ul className='space-y-3'>
 								<li>
 									<Link
 										href='/about'
-										className='hover:text-white transition-colors'
+										className='text-gray-400 hover:text-white transition-colors hover:translate-x-1 inline-block'
 									>
 										About Us
 									</Link>
@@ -463,29 +593,38 @@ export default function HomePage() {
 								<li>
 									<Link
 										href='/how-it-works'
-										className='hover:text-white transition-colors'
+										className='text-gray-400 hover:text-white transition-colors hover:translate-x-1 inline-block'
 									>
 										How It Works
 									</Link>
 								</li>
 								<li>
 									<Link
-										href='/contact'
-										className='hover:text-white transition-colors'
+										href='/for-dispatchers'
+										className='text-gray-400 hover:text-white transition-colors hover:translate-x-1 inline-block'
 									>
-										Contact
+										For Dispatchers
+									</Link>
+								</li>
+								<li>
+									<Link
+										href='/contact'
+										className='text-gray-400 hover:text-white transition-colors hover:translate-x-1 inline-block'
+									>
+										Contact Us
 									</Link>
 								</li>
 							</ul>
 						</div>
 
+						{/* Legal Links */}
 						<div>
-							<h4 className='font-semibold text-white mb-4'>Legal</h4>
-							<ul className='space-y-2 text-sm'>
+							<h4 className='font-bold text-white mb-4 text-lg'>Legal</h4>
+							<ul className='space-y-3'>
 								<li>
 									<Link
 										href='/terms'
-										className='hover:text-white transition-colors'
+										className='text-gray-400 hover:text-white transition-colors hover:translate-x-1 inline-block'
 									>
 										Terms & Conditions
 									</Link>
@@ -493,23 +632,75 @@ export default function HomePage() {
 								<li>
 									<Link
 										href='/privacy'
-										className='hover:text-white transition-colors'
+										className='text-gray-400 hover:text-white transition-colors hover:translate-x-1 inline-block'
 									>
 										Privacy Policy
+									</Link>
+								</li>
+								<li>
+									<Link
+										href='/refund-policy'
+										className='text-gray-400 hover:text-white transition-colors hover:translate-x-1 inline-block'
+									>
+										Refund Policy
+									</Link>
+								</li>
+								<li>
+									<Link
+										href='/dispute-resolution'
+										className='text-gray-400 hover:text-white transition-colors hover:translate-x-1 inline-block'
+									>
+										Dispute Resolution
 									</Link>
 								</li>
 							</ul>
 						</div>
 
+						{/* Contact Info */}
 						<div>
-							<h4 className='font-semibold text-white mb-4'>Support</h4>
-							<p className='text-sm mb-2'>Email: support@escrowng.com</p>
-							<p className='text-sm'>Phone: +234 800 000 0000</p>
+							<h4 className='font-bold text-white mb-4 text-lg'>Get in Touch</h4>
+							<ul className='space-y-3 text-gray-400'>
+								<li className='flex items-start gap-2'>
+									<svg className='w-5 h-5 text-[#1a7a4a] mt-0.5' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+										<path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z' />
+									</svg>
+									<span>support@payhold.ng</span>
+								</li>
+								<li className='flex items-start gap-2'>
+									<svg className='w-5 h-5 text-[#1a7a4a] mt-0.5' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+										<path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z' />
+									</svg>
+									<span>+234 800 000 0000</span>
+								</li>
+								<li className='flex items-start gap-2'>
+									<svg className='w-5 h-5 text-[#1a7a4a] mt-0.5' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+										<path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z' />
+										<path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M15 11a3 3 0 11-6 0 3 3 0 016 0z' />
+									</svg>
+									<span>Lagos, Nigeria</span>
+								</li>
+							</ul>
 						</div>
 					</div>
 
-					<div className='pt-8 border-t border-secondary-800 text-sm text-center'>
-						<p>&copy; 2026 PayHold. All rights reserved.</p>
+					{/* Bottom Bar */}
+					<div className='pt-8 border-t border-gray-800'>
+						<div className='flex flex-col md:flex-row justify-between items-center gap-4'>
+							<p className='text-gray-400 text-sm'>
+								&copy; 2026 PayHold. All rights reserved.
+							</p>
+							<div className='flex gap-6 text-sm text-gray-400'>
+								<Link href='/sitemap' className='hover:text-white transition-colors'>
+									Sitemap
+								</Link>
+								<Link href='/security' className='hover:text-white transition-colors'>
+									Security
+								</Link>
+								<Link href='/faq' className='hover:text-white transition-colors'>
+									FAQ
+								</Link>
+							</div>
+						</div>
 					</div>
 				</div>
 			</footer>
